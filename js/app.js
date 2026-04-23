@@ -86,111 +86,19 @@ function getDriveViewUrl(fileId) {
   return `https://drive.google.com/file/d/${fileId}/view?usp=sharing`;
 }
 
-function getDriveFileId(url) {
-  return url?.match(/[-\w]{25,}/)?.[0] || null;
-}
-
 function getVideoSourceDetails(match) {
   const url = match.videoUrl || "";
   const driveUrl = match.driveUrl || "";
   const isYouTube = url.includes('youtube.com') || url.includes('youtu.be');
   const isDrive = url.includes('drive.google.com') || driveUrl.includes('drive.google.com');
-  const driveFileId = getDriveFileId(url) || getDriveFileId(driveUrl);
-  const nativeVideoCandidates = driveFileId ? [
-    `https://drive.google.com/uc?export=download&id=${driveFileId}`,
-    `https://drive.google.com/uc?export=view&id=${driveFileId}`,
-    `https://drive.usercontent.google.com/download?id=${driveFileId}&export=view&authuser=0`
-  ] : [];
 
   return {
     isYouTube,
     isDrive,
-    driveFileId,
     embedUrl: getEmbedUrl(url),
-    nativeVideoCandidates,
     openPlayerUrl: driveUrl || url,
-    externalUrl: driveUrl || url,
-    useNativePlayer: Boolean(driveFileId)
+    externalUrl: driveUrl || url
   };
-}
-
-function clearNativeVideoState(video) {
-  if (!video) return;
-  video.pause();
-  video.removeAttribute('src');
-  video.load();
-  video.classList.add('hidden');
-  video.onerror = null;
-  video.onloadedmetadata = null;
-}
-
-function showPlayerFallback(url) {
-  const fallback = document.getElementById('playerFallback');
-  const fallbackLink = document.getElementById('playerFallbackLink');
-  if (!fallback || !fallbackLink) return;
-  fallbackLink.href = url;
-  fallback.classList.remove('hidden');
-}
-
-function hidePlayerFallback() {
-  const fallback = document.getElementById('playerFallback');
-  if (fallback) {
-    fallback.classList.add('hidden');
-  }
-}
-
-function useIframePlayer(videoPlayer, sourceDetails, matchTitle) {
-  const nativeVideoPlayer = document.getElementById('nativeVideoPlayer');
-  clearNativeVideoState(nativeVideoPlayer);
-  hidePlayerFallback();
-  videoPlayer.classList.remove('hidden');
-  videoPlayer.src = sourceDetails.embedUrl;
-  videoPlayer.title = matchTitle;
-}
-
-function attachNativeDrivePlayer(nativeVideoPlayer, videoPlayer, sourceDetails, match) {
-  const candidates = [...sourceDetails.nativeVideoCandidates];
-  let settled = false;
-  let timeoutId = null;
-
-  const tryNextSource = () => {
-    if (!candidates.length) {
-      useIframePlayer(videoPlayer, sourceDetails, match.title);
-      if (sourceDetails.isDrive) {
-        showPlayerFallback(sourceDetails.externalUrl);
-      }
-      return;
-    }
-
-    const nextSource = candidates.shift();
-    nativeVideoPlayer.src = nextSource;
-    nativeVideoPlayer.load();
-
-    timeoutId = window.setTimeout(() => {
-      if (!settled && nativeVideoPlayer.readyState < 2) {
-        tryNextSource();
-      }
-    }, 4000);
-  };
-
-  nativeVideoPlayer.onloadedmetadata = () => {
-    settled = true;
-    if (timeoutId) window.clearTimeout(timeoutId);
-    hidePlayerFallback();
-  };
-
-  nativeVideoPlayer.onerror = () => {
-    if (timeoutId) window.clearTimeout(timeoutId);
-    tryNextSource();
-  };
-
-  nativeVideoPlayer.classList.remove('hidden');
-  nativeVideoPlayer.poster = match.thumbnail || "";
-  nativeVideoPlayer.setAttribute('title', match.title);
-  videoPlayer.classList.add('hidden');
-  videoPlayer.src = "";
-  hidePlayerFallback();
-  tryNextSource();
 }
 
 function getSortedMatches(matches = matchesData.videos) {
@@ -351,13 +259,12 @@ function renderMatchPage() {
   // Update video player
   const sourceDetails = getVideoSourceDetails(match);
   const videoPlayer = document.getElementById('videoPlayer');
-  const nativeVideoPlayer = document.getElementById('nativeVideoPlayer');
-
-  if (sourceDetails.useNativePlayer) {
-    attachNativeDrivePlayer(nativeVideoPlayer, videoPlayer, sourceDetails, match);
-  } else {
-    useIframePlayer(videoPlayer, sourceDetails, match.title);
-  }
+  const videoContainerEl = document.querySelector('.video-container');
+  videoPlayer.classList.remove('hidden');
+  videoPlayer.src = sourceDetails.embedUrl;
+  videoPlayer.title = match.title;
+  videoContainerEl.classList.toggle('drive-embed-player', sourceDetails.isDrive);
+  videoContainerEl.classList.toggle('youtube-embed-player', sourceDetails.isYouTube);
 
   // Update match info
   document.getElementById('matchType').textContent = match.matchType;
