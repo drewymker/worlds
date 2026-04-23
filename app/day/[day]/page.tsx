@@ -8,10 +8,10 @@ import { ArrowLeft, Play, Calendar, Users } from "lucide-react"
 import matchesData from "@/data/videos.json"
 
 const dayInfo: Record<number, { date: string; description: string }> = {
-  1: { date: "April 23, 2025", description: "Practice Matches & Opening Qualifications" },
-  2: { date: "April 24, 2025", description: "Qualification Rounds Continue" },
-  3: { date: "April 25, 2025", description: "Elimination Rounds & Quarterfinals" },
-  4: { date: "April 26, 2025", description: "Semifinals & Championship Finals" },
+  1: { date: "April 21, 2026", description: "Practice Matches & Opening Qualifications" },
+  2: { date: "April 22, 2026", description: "Qualification Rounds Continue" },
+  3: { date: "April 23, 2026", description: "Qualification Rounds Continue" },
+  4: { date: "April 24, 2026", description: "Qualfication and Elimination Rounds" },
 }
 
 const containerVariants = {
