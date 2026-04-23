@@ -42,6 +42,15 @@
       <div class="container">
         <!-- Video Container -->
         <div class="video-container fade-in">
+          <div class="mobile-drive-player hidden" id="mobileDrivePlayer">
+            <img id="mobileDrivePoster" class="mobile-drive-poster" src="" alt="">
+            <div class="mobile-drive-overlay">
+              <div class="mobile-drive-badge">Mobile Playback</div>
+              <h2 class="mobile-drive-title">Watch in Google Drive</h2>
+              <p class="mobile-drive-copy">This match opens in the full player so the controls stay usable on your phone.</p>
+              <a href="#" class="btn mobile-drive-button" id="mobileDriveLink" target="_blank" rel="noopener noreferrer">Open Video</a>
+            </div>
+          </div>
           <iframe id="videoPlayer" src="" title="Match Video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
 

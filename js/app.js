@@ -86,6 +86,16 @@ function getDriveViewUrl(fileId) {
   return `https://drive.google.com/file/d/${fileId}/view?usp=sharing`;
 }
 
+function shouldUseMobileDriveFallback(sourceDetails) {
+  if (!sourceDetails.isDrive) return false;
+
+  const isSmallScreen = window.matchMedia('(max-width: 768px)').matches;
+  const userAgent = navigator.userAgent || '';
+  const isMobileUA = /Android|iPhone|iPad|iPod|Mobile/i.test(userAgent);
+
+  return isSmallScreen || isMobileUA;
+}
+
 function getVideoSourceDetails(match) {
   const url = match.videoUrl || "";
   const driveUrl = match.driveUrl || "";
@@ -259,11 +269,30 @@ function renderMatchPage() {
   // Update video player
   const sourceDetails = getVideoSourceDetails(match);
   const videoPlayer = document.getElementById('videoPlayer');
+  const mobileDrivePlayer = document.getElementById('mobileDrivePlayer');
+  const mobileDrivePoster = document.getElementById('mobileDrivePoster');
+  const mobileDriveLink = document.getElementById('mobileDriveLink');
   videoPlayer.classList.remove('hidden');
   videoPlayer.src = sourceDetails.embedUrl;
   videoPlayer.title = match.title;
   videoContainer.classList.toggle('drive-embed-player', sourceDetails.isDrive);
   videoContainer.classList.toggle('youtube-embed-player', sourceDetails.isYouTube);
+
+  if (shouldUseMobileDriveFallback(sourceDetails)) {
+    videoPlayer.classList.add('hidden');
+    videoPlayer.src = '';
+    mobileDrivePoster.src = match.thumbnail;
+    mobileDrivePoster.alt = `${match.title} thumbnail`;
+    mobileDriveLink.href = sourceDetails.externalUrl;
+    mobileDrivePlayer.classList.remove('hidden');
+    videoContainer.classList.add('mobile-drive-mode');
+  } else {
+    mobileDrivePlayer.classList.add('hidden');
+    mobileDrivePoster.removeAttribute('src');
+    mobileDrivePoster.alt = '';
+    mobileDriveLink.href = '#';
+    videoContainer.classList.remove('mobile-drive-mode');
+  }
 
   // Update match info
   document.getElementById('matchType').textContent = match.matchType;

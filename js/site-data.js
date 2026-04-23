@@ -13,26 +13,28 @@ window.siteData = {
       blueTeams: ["36620B", "1010V"]
     },
     {
-      id: "q1-002",
-      title: "Qualification Match Q1-002",
-      thumbnail: "images/match-placeholder.png",
-      videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
-      dateAdded: "2025-04-23T09:30:00Z",
-      day: 1,
-      matchType: "Qualification",
-      redTeams: ["2468A", "1357B"],
-      blueTeams: ["36620B", "6913D"]
-    },
-    {
-      id: "q1-003",
-      title: "Practice Match P1-003",
-      thumbnail: "images/match-placeholder.png",
-      videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
-      dateAdded: "2025-04-23T08:30:00Z",
+      id: "P2",
+      title: "Practice Match #2",
+      thumbnail: "https://drive.google.com/thumbnail?id=14vCdMeNunMsBgvxUbDig2w5Wq2qCAu3e&sz=w400-h300",
+      videoUrl: "https://drive.google.com/file/d/14vCdMeNunMsBgvxUbDig2w5Wq2qCAu3e/preview",
+      driveUrl: "https://drive.google.com/file/d/14vCdMeNunMsBgvxUbDig2w5Wq2qCAu3e/view?usp=sharing",
+      dateAdded: "2025-04-23T15:04:00Z",
       day: 1,
       matchType: "Practice",
-      redTeams: ["7890A", "4321B"],
-      blueTeams: ["36620B", "9876D"]
+      redTeams: ["36620B", "1698V"],
+      blueTeams: ["7405V", "1764V"]
+    },
+    {
+      id: "Q53",
+      title: "Qualification Match #53",
+      thumbnail: "https://drive.google.com/thumbnail?id=1ALLcx-u5Aifj_B5B2nXqnS769iZyS1nA&sz=w400-h300",
+      videoUrl: "https://drive.google.com/file/d/1ALLcx-u5Aifj_B5B2nXqnS769iZyS1nA/preview",
+      driveUrl: "https://drive.google.com/file/d/1ALLcx-u5Aifj_B5B2nXqnS769iZyS1nA/view?usp=sharing",
+      dateAdded: "2025-04-24T10:25:00Z",
+      day: 2,
+      matchType: "Qualification",
+      redTeams: ["1961D", "36620B"],
+      blueTeams: ["11342A", "2496R"]
     },
     {
       id: "q2-001",
