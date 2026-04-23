@@ -891,6 +891,25 @@ body {
   border-color: transparent;
 }
 
+.mobile-drive-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  width: 100%;
+}
+
+.mobile-drive-secondary {
+  background: rgba(15, 20, 25, 0.55);
+  border-color: rgba(255, 255, 255, 0.14);
+  color: #fff;
+}
+
+.mobile-drive-secondary:hover {
+  background: rgba(30, 36, 51, 0.8);
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.24);
+}
+
 .video-container.drive-embed-player,
 .video-container.youtube-embed-player {
   aspect-ratio: 16 / 9;
@@ -1150,6 +1169,16 @@ body {
   }
 
   .mobile-drive-button {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .mobile-drive-actions {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .mobile-drive-secondary {
     width: 100%;
     justify-content: center;
   }

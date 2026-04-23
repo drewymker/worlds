@@ -48,7 +48,11 @@
               <div class="mobile-drive-badge">Mobile Playback</div>
               <h2 class="mobile-drive-title">Play Fullscreen</h2>
               <p class="mobile-drive-copy">Tap once to launch the match in fullscreen landscape on your phone.</p>
-              <button type="button" class="btn mobile-drive-button" id="mobileDriveLaunch">Play Match</button>
+              <div class="mobile-drive-actions">
+                <button type="button" class="btn mobile-drive-button" id="mobileDriveLaunch">Play Match</button>
+                <a href="#" class="btn btn-outline mobile-drive-secondary" id="mobileDriveBack">Back to Day</a>
+                <a href="#" class="btn btn-outline mobile-drive-secondary" id="mobileDriveOriginal" target="_blank" rel="noopener noreferrer">Open Original</a>
+              </div>
             </div>
           </div>
           <iframe id="videoPlayer" src="" title="Match Video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>

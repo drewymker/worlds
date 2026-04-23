@@ -311,6 +311,8 @@ function renderMatchPage() {
   const mobileDrivePlayer = document.getElementById('mobileDrivePlayer');
   const mobileDrivePoster = document.getElementById('mobileDrivePoster');
   const mobileDriveLaunch = document.getElementById('mobileDriveLaunch');
+  const mobileDriveBack = document.getElementById('mobileDriveBack');
+  const mobileDriveOriginal = document.getElementById('mobileDriveOriginal');
   videoPlayer.classList.remove('hidden');
   videoPlayer.src = sourceDetails.embedUrl;
   videoPlayer.title = match.title;
@@ -322,6 +324,8 @@ function renderMatchPage() {
     videoPlayer.src = '';
     mobileDrivePoster.src = match.thumbnail;
     mobileDrivePoster.alt = `${match.title} thumbnail`;
+    mobileDriveBack.href = `day.html?day=${match.day}`;
+    mobileDriveOriginal.href = sourceDetails.externalUrl;
     mobileDrivePlayer.classList.remove('hidden');
     videoContainer.classList.add('mobile-drive-mode');
     setupMobileDriveLaunch(videoContainer, videoPlayer, mobileDrivePlayer, mobileDriveLaunch, sourceDetails, match);
@@ -330,6 +334,8 @@ function renderMatchPage() {
     mobileDrivePoster.removeAttribute('src');
     mobileDrivePoster.alt = '';
     mobileDriveLaunch.onclick = null;
+    mobileDriveBack.href = '#';
+    mobileDriveOriginal.href = '#';
     videoContainer.classList.remove('mobile-drive-mode');
   }
 
