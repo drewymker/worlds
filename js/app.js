@@ -86,46 +86,27 @@ function getDriveViewUrl(fileId) {
   return `https://drive.google.com/file/d/${fileId}/view?usp=sharing`;
 }
 
+function getDriveFileId(url) {
+  return url?.match(/[-\w]{25,}/)?.[0] || null;
+}
+
 function getVideoSourceDetails(match) {
   const url = match.videoUrl || "";
   const driveUrl = match.driveUrl || "";
   const isYouTube = url.includes('youtube.com') || url.includes('youtu.be');
   const isDrive = url.includes('drive.google.com') || driveUrl.includes('drive.google.com');
+  const driveFileId = getDriveFileId(url) || getDriveFileId(driveUrl);
 
   return {
     isYouTube,
     isDrive,
+    driveFileId,
     embedUrl: getEmbedUrl(url),
+    nativeVideoUrl: driveFileId ? `https://drive.google.com/uc?export=download&id=${driveFileId}` : "",
     openPlayerUrl: driveUrl || url,
     externalUrl: driveUrl || url,
-    helpText: isDrive
-      ? "Google Drive embeds hide important controls on phones. Open the video directly or use fullscreen for a better player."
-      : "If the embedded player feels cramped on mobile, open it directly or switch to fullscreen."
+    useNativePlayer: Boolean(driveFileId)
   };
-}
-
-async function requestPlayerFullscreen() {
-  const playerFrame = document.getElementById('videoPlayer');
-  const container = document.querySelector('.video-container');
-  const target = container || playerFrame;
-
-  if (!target) return;
-
-  try {
-    if (target.requestFullscreen) {
-      await target.requestFullscreen();
-      return;
-    }
-
-    if (playerFrame?.requestFullscreen) {
-      await playerFrame.requestFullscreen();
-      return;
-    }
-
-    window.open(playerFrame?.src, '_blank', 'noopener,noreferrer');
-  } catch (error) {
-    window.open(playerFrame?.src, '_blank', 'noopener,noreferrer');
-  }
 }
 
 function getSortedMatches(matches = matchesData.videos) {
@@ -260,14 +241,12 @@ function renderMatchPage() {
 
   const notFound = document.getElementById('notFound');
   const videoContainer = document.querySelector('.video-container');
-  const playerActions = document.querySelector('.player-actions');
   const mobilePlayerNav = document.querySelector('.mobile-player-nav');
   const matchInfo = document.querySelector('.match-info');
 
   if (!match) {
     notFound.classList.remove('hidden');
     videoContainer.classList.add('hidden');
-    playerActions.classList.add('hidden');
     mobilePlayerNav.classList.add('hidden');
     matchInfo.classList.add('hidden');
     return;
@@ -288,28 +267,26 @@ function renderMatchPage() {
   // Update video player
   const sourceDetails = getVideoSourceDetails(match);
   const videoPlayer = document.getElementById('videoPlayer');
-  videoPlayer.src = sourceDetails.embedUrl;
-  videoPlayer.title = match.title;
+  const nativeVideoPlayer = document.getElementById('nativeVideoPlayer');
 
-  const playerHelpText = document.getElementById('playerHelpText');
-  const openPlayerLink = document.getElementById('openPlayerLink');
-  const externalPlayerLink = document.getElementById('externalPlayerLink');
-  const fullscreenButton = document.getElementById('fullscreenButton');
+  if (sourceDetails.useNativePlayer) {
+    nativeVideoPlayer.classList.remove('hidden');
+    nativeVideoPlayer.src = sourceDetails.nativeVideoUrl;
+    nativeVideoPlayer.poster = match.thumbnail || "";
+    nativeVideoPlayer.setAttribute('title', match.title);
+    nativeVideoPlayer.load();
 
-  playerHelpText.textContent = sourceDetails.helpText;
-  openPlayerLink.href = sourceDetails.openPlayerUrl;
-  externalPlayerLink.href = sourceDetails.externalUrl;
-  fullscreenButton.onclick = requestPlayerFullscreen;
-
-  if (sourceDetails.isDrive) {
-    openPlayerLink.querySelector('span').textContent = 'Open In Drive';
-    externalPlayerLink.querySelector('span').textContent = 'Open Original';
-  } else if (sourceDetails.isYouTube) {
-    openPlayerLink.querySelector('span').textContent = 'Open In YouTube';
-    externalPlayerLink.querySelector('span').textContent = 'Share Link';
+    videoPlayer.classList.add('hidden');
+    videoPlayer.src = "";
   } else {
-    openPlayerLink.querySelector('span').textContent = 'Open Player';
-    externalPlayerLink.querySelector('span').textContent = 'Open Original';
+    videoPlayer.classList.remove('hidden');
+    videoPlayer.src = sourceDetails.embedUrl;
+    videoPlayer.title = match.title;
+
+    nativeVideoPlayer.pause();
+    nativeVideoPlayer.removeAttribute('src');
+    nativeVideoPlayer.load();
+    nativeVideoPlayer.classList.add('hidden');
   }
 
   // Update match info

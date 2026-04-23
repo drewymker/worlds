@@ -42,25 +42,8 @@
       <div class="container">
         <!-- Video Container -->
         <div class="video-container fade-in">
+          <video id="nativeVideoPlayer" class="native-video-player hidden" controls playsinline webkit-playsinline preload="metadata"></video>
           <iframe id="videoPlayer" src="" title="Match Video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-        </div>
-
-        <div class="player-actions fade-in fade-delay-1">
-          <div class="player-actions-copy">
-            <p class="player-actions-title">Player Controls</p>
-            <p class="player-actions-note" id="playerHelpText">Use these controls if the embedded player feels cramped on mobile.</p>
-          </div>
-          <div class="player-actions-grid">
-            <button type="button" class="btn btn-outline" id="fullscreenButton">
-              <span>Fullscreen</span>
-            </button>
-            <a href="#" class="btn btn-outline" id="openPlayerLink" target="_blank" rel="noopener noreferrer">
-              <span>Open Player</span>
-            </a>
-            <a href="#" class="btn btn-outline" id="externalPlayerLink" target="_blank" rel="noopener noreferrer">
-              <span>Open Original</span>
-            </a>
-          </div>
         </div>
 
         <div class="mobile-player-nav fade-in fade-delay-1">
