@@ -882,6 +882,7 @@ body {
   color: #fff;
   border: 1px solid rgba(255, 255, 255, 0.12);
   font-weight: 700;
+  min-height: 3rem;
 }
 
 .mobile-drive-button:hover {

@@ -37,104 +37,52 @@ window.siteData = {
       blueTeams: ["11342A", "2496R"]
     },
     {
-      id: "q2-001",
-      title: "Qualification Match Q2-001",
-      thumbnail: "images/match-placeholder.png",
-      videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
-      dateAdded: "2025-04-24T09:00:00Z",
+      id: "Q41",
+      title: "Qualification Match #41",
+      thumbnail: "https://drive.google.com/thumbnail?id=1_YTDia9bYIkjcHs8iS5ozv0X3seAg7VX&sz=w400-h300",
+      videoUrl: "https://drive.google.com/file/d/1_YTDia9bYIkjcHs8iS5ozv0X3seAg7VX/preview",
+      driveUrl: "https://drive.google.com/file/d/1_YTDia9bYIkjcHs8iS5ozv0X3seAg7VX/view?usp=sharing",
+      dateAdded: "2025-04-24T09:40:00Z",
       day: 2,
       matchType: "Qualification",
-      redTeams: ["36620B", "2222B"],
-      blueTeams: ["3333C", "4444D"]
+      redTeams: ["36620B", "54500B"],
+      blueTeams: ["92973B", "58676S"]
     },
     {
-      id: "q2-002",
-      title: "Qualification Match Q2-002",
-      thumbnail: "images/match-placeholder.png",
-      videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
-      dateAdded: "2025-04-24T10:30:00Z",
+      id: "Q85",
+      title: "Qualification Match #85",
+      thumbnail: "https://drive.google.com/thumbnail?id=1TNIVn41W6nb332FqfFjHBYrvB73uofSB&sz=w400-h300",
+      videoUrl: "https://drive.google.com/file/d/1TNIVn41W6nb332FqfFjHBYrvB73uofSB/preview",
+      driveUrl: "https://drive.google.com/file/d/1TNIVn41W6nb332FqfFjHBYrvB73uofSB/view?usp=sharing",
+      dateAdded: "2025-04-24T13:47:00Z",
       day: 2,
       matchType: "Qualification",
-      redTeams: ["5555A", "6666B"],
-      blueTeams: ["36620B", "8888D"]
+      redTeams: ["7258A", "4828X"],
+      blueTeams: ["36620B", "98548K"]
     },
     {
-      id: "e3-001",
-      title: "Round of 16 - Match E3-001",
-      thumbnail: "images/match-placeholder.png",
-      videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
-      dateAdded: "2025-04-25T09:00:00Z",
-      day: 3,
-      matchType: "Elimination",
-      redTeams: ["1234A", "2468A"],
-      blueTeams: ["36620B", "8024C"]
-    },
-    {
-      id: "e3-002",
-      title: "Quarterfinals - Match QF-001",
-      thumbnail: "images/match-placeholder.png",
-      videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
-      dateAdded: "2025-04-25T14:00:00Z",
-      day: 3,
-      matchType: "Quarterfinal",
-      redTeams: ["1234A", "5678B"],
-      blueTeams: ["36620B", "3456D"]
-    },
-    {
-      id: "sf-001",
-      title: "Semifinals - Match SF-001",
-      thumbnail: "images/match-placeholder.png",
-      videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
-      dateAdded: "2025-04-26T10:00:00Z",
-      day: 4,
-      matchType: "Semifinal",
-      redTeams: ["1234A", "2468A"],
-      blueTeams: ["36620B", "6666B"]
-    },
-    {
-      id: "finals-001",
-      title: "Championship Finals - Match F-001",
-      thumbnail: "images/match-placeholder.png",
-      videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
-      dateAdded: "2025-04-26T15:00:00Z",
-      day: 4,
-      matchType: "Finals",
-      redTeams: ["1234A", "2468A"],
-      blueTeams: ["36620B", "8888D"]
-    }
-  ],
-  daysInfo: [
-    {
-      day: 1,
-      date: "April 23, 2025",
-      title: "Day 1",
-      description: "Practice Matches & Opening Qualifications",
-      icon: "users",
-      matchCount: 3
-    },
-    {
+      id: "Q108",
+      title: "Qualification Match #108",
+      thumbnail: "https://drive.google.com/thumbnail?id=1kWhqPpluXeTPan6H5JY8IP2VSu_TICRa&sz=w400-h300",
+      videoUrl: "https://drive.google.com/file/d/1kWhqPpluXeTPan6H5JY8IP2VSu_TICRa/preview",
+      driveUrl: "https://drive.google.com/file/d/1kWhqPpluXeTPan6H5JY8IP2VSu_TICRa/view?usp=sharing",
+      dateAdded: "2025-04-24T15:17:00Z",
       day: 2,
-      date: "April 24, 2025",
-      title: "Day 2",
-      description: "Qualification Rounds Continue",
-      icon: "play",
-      matchCount: 2
+      matchType: "Qualification",
+      redTeams: ["36620B", "2055A"],
+      blueTeams: ["21619A", "1255S"]
     },
     {
-      day: 3,
-      date: "April 25, 2025",
-      title: "Day 3",
-      description: "Elimination Rounds & Quarterfinals",
-      icon: "calendar",
-      matchCount: 2
-    },
-    {
-      day: 4,
-      date: "April 26, 2025",
-      title: "Day 4",
-      description: "Semifinals & Championship Finals",
-      icon: "trophy",
-      matchCount: 2
+      id: "Q125",
+      title: "Qualification Match #125",
+      thumbnail: "https://drive.google.com/thumbnail?id=1tB4U7HFQ0A4Te83aD2z5ESY_UI6HsyNE&sz=w400-h300",
+      videoUrl: "https://drive.google.com/file/d/1tB4U7HFQ0A4Te83aD2z5ESY_UI6HsyNE/preview",
+      driveUrl: "https://drive.google.com/file/d/1tB4U7HFQ0A4Te83aD2z5ESY_UI6HsyNE/view?usp=sharing",
+      dateAdded: "2025-04-24T16:23:00Z",
+      day: 2,
+      matchType: "Qualification",
+      redTeams: ["2732Z", "77787W"],
+      blueTeams: ["36620B", "5956W"]
     }
   ]
 };
