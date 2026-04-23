@@ -167,7 +167,7 @@ function renderDaysGrid() {
         <p class="day-card-description">${day.description}</p>
         <div class="day-card-badge">
           ${icons.play}
-          ${day.matchCount} matches
+          ${matchesData.videos.filter(match => match.day === day.day).length} matches
         </div>
         <div class="day-card-arrow">
           ${icons.arrow}
