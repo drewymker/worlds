@@ -1,144 +1,5 @@
-// Match data
-const matchesData = {
-  videos: [
-    {
-      id: "Q5",
-      title: "Qualification Match #5",
-      thumbnail: "https://drive.google.com/thumbnail?id=1J-bI4m-yBaEShPHFIK4zQnHnZGBKoUaY&sz=w400-h300",
-      videoUrl: "https://drive.google.com/file/d/1J-bI4m-yBaEShPHFIK4zQnHnZGBKoUaY/preview",
-      driveUrl: "https://drive.google.com/file/d/1J-bI4m-yBaEShPHFIK4zQnHnZGBKoUaY/view?usp=sharing",
-      dateAdded: "2025-04-23T16:45:00Z",
-      day: 1,
-      matchType: "Qualification",
-      redTeams: ["119P", "67591A"],
-      blueTeams: ["36620B", "1010V"]
-    },
-    {
-      id: "q1-002",
-      title: "Qualification Match Q1-002",
-      thumbnail: "images/match-placeholder.png",
-      videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
-      dateAdded: "2025-04-23T09:30:00Z",
-      day: 1,
-      matchType: "Qualification",
-      redTeams: ["2468A", "1357B"],
-      blueTeams: ["36620B", "6913D"]
-    },
-    {
-      id: "q1-003",
-      title: "Practice Match P1-003",
-      thumbnail: "images/match-placeholder.png",
-      videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
-      dateAdded: "2025-04-23T08:30:00Z",
-      day: 1,
-      matchType: "Practice",
-      redTeams: ["7890A", "4321B"],
-      blueTeams: ["36620B", "9876D"]
-    },
-    {
-      id: "q2-001",
-      title: "Qualification Match Q2-001",
-      thumbnail: "images/match-placeholder.png",
-      videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
-      dateAdded: "2025-04-24T09:00:00Z",
-      day: 2,
-      matchType: "Qualification",
-      redTeams: ["36620B", "2222B"],
-      blueTeams: ["3333C", "4444D"]
-    },
-    {
-      id: "q2-002",
-      title: "Qualification Match Q2-002",
-      thumbnail: "images/match-placeholder.png",
-      videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
-      dateAdded: "2025-04-24T10:30:00Z",
-      day: 2,
-      matchType: "Qualification",
-      redTeams: ["5555A", "6666B"],
-      blueTeams: ["36620B", "8888D"]
-    },
-    {
-      id: "e3-001",
-      title: "Round of 16 - Match E3-001",
-      thumbnail: "images/match-placeholder.png",
-      videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
-      dateAdded: "2025-04-25T09:00:00Z",
-      day: 3,
-      matchType: "Elimination",
-      redTeams: ["1234A", "2468A"],
-      blueTeams: ["36620B", "8024C"]
-    },
-    {
-      id: "e3-002",
-      title: "Quarterfinals - Match QF-001",
-      thumbnail: "images/match-placeholder.png",
-      videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
-      dateAdded: "2025-04-25T14:00:00Z",
-      day: 3,
-      matchType: "Quarterfinal",
-      redTeams: ["1234A", "5678B"],
-      blueTeams: ["36620B", "3456D"]
-    },
-    {
-      id: "sf-001",
-      title: "Semifinals - Match SF-001",
-      thumbnail: "images/match-placeholder.png",
-      videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
-      dateAdded: "2025-04-26T10:00:00Z",
-      day: 4,
-      matchType: "Semifinal",
-      redTeams: ["1234A", "2468A"],
-      blueTeams: ["36620B", "6666B"]
-    },
-    {
-      id: "finals-001",
-      title: "Championship Finals - Match F-001",
-      thumbnail: "images/match-placeholder.png",
-      videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
-      dateAdded: "2025-04-26T15:00:00Z",
-      day: 4,
-      matchType: "Finals",
-      redTeams: ["1234A", "2468A"],
-      blueTeams: ["36620B", "8888D"]
-    }
-  ]
-};
-
-// Day information
-const daysInfo = [
-  {
-    day: 1,
-    date: "April 23, 2025",
-    title: "Day 1",
-    description: "Practice Matches & Opening Qualifications",
-    icon: "users",
-    matchCount: 3
-  },
-  {
-    day: 2,
-    date: "April 24, 2025",
-    title: "Day 2",
-    description: "Qualification Rounds Continue",
-    icon: "play",
-    matchCount: 2
-  },
-  {
-    day: 3,
-    date: "April 25, 2025",
-    title: "Day 3",
-    description: "Elimination Rounds & Quarterfinals",
-    icon: "calendar",
-    matchCount: 2
-  },
-  {
-    day: 4,
-    date: "April 26, 2025",
-    title: "Day 4",
-    description: "Semifinals & Championship Finals",
-    icon: "trophy",
-    matchCount: 2
-  }
-];
+const matchesData = { videos: window.siteData?.matches || [] };
+const daysInfo = window.siteData?.daysInfo || [];
 
 // Icon SVGs
 const icons = {
@@ -225,6 +86,45 @@ function getDriveViewUrl(fileId) {
   return `https://drive.google.com/file/d/${fileId}/view?usp=sharing`;
 }
 
+function getSortedMatches(matches = matchesData.videos) {
+  return [...matches].sort((a, b) => new Date(a.dateAdded) - new Date(b.dateAdded));
+}
+
+function getMatchSiblings(match) {
+  const dayMatches = getSortedMatches(matchesData.videos.filter(v => v.day === match.day));
+  const currentIndex = dayMatches.findIndex(v => v.id === match.id);
+
+  return {
+    dayMatches,
+    currentIndex,
+    previousMatch: currentIndex > 0 ? dayMatches[currentIndex - 1] : null,
+    nextMatch: currentIndex < dayMatches.length - 1 ? dayMatches[currentIndex + 1] : null
+  };
+}
+
+function setNavLinkState(link, match, labelPrefix) {
+  if (!link) return;
+
+  if (!match) {
+    link.classList.add('is-disabled');
+    link.setAttribute('aria-disabled', 'true');
+    link.removeAttribute('href');
+    const label = link.querySelector('.match-nav-link-label');
+    const meta = link.querySelector('.match-nav-link-meta');
+    if (label) label.textContent = labelPrefix;
+    if (meta) meta.textContent = 'Unavailable';
+    return;
+  }
+
+  link.classList.remove('is-disabled');
+  link.removeAttribute('aria-disabled');
+  link.href = `match.html?id=${match.id}`;
+  const label = link.querySelector('.match-nav-link-label');
+  const meta = link.querySelector('.match-nav-link-meta');
+  if (label) label.textContent = labelPrefix;
+  if (meta) meta.textContent = match.title;
+}
+
 // Render functions
 function renderDaysGrid() {
   const grid = document.getElementById('daysGrid');
@@ -255,7 +155,7 @@ function renderDaysGrid() {
 function renderDayPage() {
   const dayNumber = parseInt(getUrlParameter('day')) || 1;
   const dayInfo = daysInfo.find(d => d.day === dayNumber) || daysInfo[0];
-  const matches = matchesData.videos.filter(v => v.day === dayNumber);
+  const matches = getSortedMatches(matchesData.videos.filter(v => v.day === dayNumber));
 
   // Update page title
   document.title = `Day ${dayNumber} - 36620B Blue Crew | VEX Worlds 2025`;
@@ -318,11 +218,13 @@ function renderMatchPage() {
 
   const notFound = document.getElementById('notFound');
   const videoContainer = document.querySelector('.video-container');
+  const mobilePlayerNav = document.querySelector('.mobile-player-nav');
   const matchInfo = document.querySelector('.match-info');
 
   if (!match) {
     notFound.classList.remove('hidden');
     videoContainer.classList.add('hidden');
+    mobilePlayerNav.classList.add('hidden');
     matchInfo.classList.add('hidden');
     return;
   }
@@ -360,9 +262,18 @@ function renderMatchPage() {
     .join('');
 
   // Update navigation
+  const { dayMatches, currentIndex, previousMatch, nextMatch } = getMatchSiblings(match);
+  const matchPosition = document.getElementById('matchPosition');
+  if (matchPosition) {
+    matchPosition.textContent = `${currentIndex + 1} of ${dayMatches.length} on Day ${match.day}`;
+  }
+
   document.getElementById('moreDayMatches').href = `day.html?day=${match.day}`;
   document.getElementById('moreDayMatches').innerHTML = `
     ${icons.play}
     More Day ${match.day} Matches
   `;
+
+  setNavLinkState(document.getElementById('previousMatchLink'), previousMatch, 'Previous Match');
+  setNavLinkState(document.getElementById('nextMatchLink'), nextMatch, 'Next Match');
 }

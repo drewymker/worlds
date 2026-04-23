@@ -45,6 +45,23 @@
           <iframe id="videoPlayer" src="" title="Match Video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
 
+        <div class="mobile-player-nav fade-in fade-delay-1">
+          <div class="mobile-player-nav-header">
+            <span class="mobile-player-nav-kicker">Quick Navigation</span>
+            <span class="mobile-player-nav-position" id="matchPosition">1 of 1 on Day 1</span>
+          </div>
+          <div class="mobile-player-nav-grid">
+            <a href="#" class="match-nav-link" id="previousMatchLink">
+              <span class="match-nav-link-label">Previous Match</span>
+              <span class="match-nav-link-meta">Unavailable</span>
+            </a>
+            <a href="#" class="match-nav-link" id="nextMatchLink">
+              <span class="match-nav-link-label">Next Match</span>
+              <span class="match-nav-link-meta">Unavailable</span>
+            </a>
+          </div>
+        </div>
+
         <!-- Match Info -->
         <div class="match-info">
           <!-- Title and Badges -->
@@ -128,6 +145,7 @@
     </section>
   </main>
 
+  <script src="js/site-data.js"></script>
   <script src="js/app.js"></script>
   <script>
     document.addEventListener('DOMContentLoaded', () => {

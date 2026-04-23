@@ -1,21 +1,22 @@
 {
   "videos": [
     {
-      "id": "Q1",
-      "title": "Practice Match #1",
-      "thumbnail": "https://drive.google.com/thumbnail?id=14vCdMeNunMsBgvxUbDig2w5Wq2qCAu3e&sz=w400-h300",
-      "videoUrl": "https://drive.google.com/file/d/14vCdMeNunMsBgvxUbDig2w5Wq2qCAu3e/view?usp=sharing",
-      "dateAdded": "2025-04-23T09:00:00Z",
+      "id": "Q5",
+      "title": "Qualification Match #5",
+      "thumbnail": "https://drive.google.com/thumbnail?id=1J-bI4m-yBaEShPHFIK4zQnHnZGBKoUaY&sz=w400-h300",
+      "videoUrl": "https://drive.google.com/file/d/1J-bI4m-yBaEShPHFIK4zQnHnZGBKoUaY/preview",
+      "driveUrl": "https://drive.google.com/file/d/1J-bI4m-yBaEShPHFIK4zQnHnZGBKoUaY/view?usp=sharing",
+      "dateAdded": "2025-04-23T16:45:00Z",
       "folder": "Day 1",
       "day": 1,
-      "matchType": "Practice",
-      "redTeams": ["36620B", "1698V"],
-      "blueTeams": ["1764V", "7405V"]
+      "matchType": "Qualification",
+      "redTeams": ["119P", "67591A"],
+      "blueTeams": ["36620B", "1010V"]
     },
     {
       "id": "q1-002",
       "title": "Qualification Match Q1-002",
-      "thumbnail": "/match-placeholder.png",
+      "thumbnail": "images/match-placeholder.png",
       "videoUrl": "https://www.youtube.com/embed/dQw4w9WgXcQ",
       "dateAdded": "2025-04-23T09:30:00Z",
       "folder": "Day 1",
@@ -27,7 +28,7 @@
     {
       "id": "q1-003",
       "title": "Practice Match P1-003",
-      "thumbnail": "/match-placeholder.png",
+      "thumbnail": "images/match-placeholder.png",
       "videoUrl": "https://www.youtube.com/embed/dQw4w9WgXcQ",
       "dateAdded": "2025-04-23T08:30:00Z",
       "folder": "Day 1",
@@ -39,7 +40,7 @@
     {
       "id": "q2-001",
       "title": "Qualification Match Q2-001",
-      "thumbnail": "/match-placeholder.png",
+      "thumbnail": "images/match-placeholder.png",
       "videoUrl": "https://www.youtube.com/embed/dQw4w9WgXcQ",
       "dateAdded": "2025-04-24T09:00:00Z",
       "folder": "Day 2",
@@ -51,7 +52,7 @@
     {
       "id": "q2-002",
       "title": "Qualification Match Q2-002",
-      "thumbnail": "/match-placeholder.png",
+      "thumbnail": "images/match-placeholder.png",
       "videoUrl": "https://www.youtube.com/embed/dQw4w9WgXcQ",
       "dateAdded": "2025-04-24T10:30:00Z",
       "folder": "Day 2",
@@ -63,7 +64,7 @@
     {
       "id": "e3-001",
       "title": "Round of 16 - Match E3-001",
-      "thumbnail": "/match-placeholder.png",
+      "thumbnail": "images/match-placeholder.png",
       "videoUrl": "https://www.youtube.com/embed/dQw4w9WgXcQ",
       "dateAdded": "2025-04-25T09:00:00Z",
       "folder": "Day 3",
@@ -75,7 +76,7 @@
     {
       "id": "e3-002",
       "title": "Quarterfinals - Match QF-001",
-      "thumbnail": "/match-placeholder.png",
+      "thumbnail": "images/match-placeholder.png",
       "videoUrl": "https://www.youtube.com/embed/dQw4w9WgXcQ",
       "dateAdded": "2025-04-25T14:00:00Z",
       "folder": "Day 3",
@@ -87,7 +88,7 @@
     {
       "id": "sf-001",
       "title": "Semifinals - Match SF-001",
-      "thumbnail": "/match-placeholder.png",
+      "thumbnail": "images/match-placeholder.png",
       "videoUrl": "https://www.youtube.com/embed/dQw4w9WgXcQ",
       "dateAdded": "2025-04-26T10:00:00Z",
       "folder": "Day 4",
@@ -99,7 +100,7 @@
     {
       "id": "finals-001",
       "title": "Championship Finals - Match F-001",
-      "thumbnail": "/match-placeholder.png",
+      "thumbnail": "images/match-placeholder.png",
       "videoUrl": "https://www.youtube.com/embed/dQw4w9WgXcQ",
       "dateAdded": "2025-04-26T15:00:00Z",
       "folder": "Day 4",
