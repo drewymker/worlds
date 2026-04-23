@@ -1055,22 +1055,6 @@ body {
     border-radius: calc(var(--radius) - 2px);
   }
 
-  .video-container.drive-embed-player {
-    aspect-ratio: 16 / 11;
-    background: #000;
-  }
-
-  .video-container.drive-embed-player iframe {
-    width: 180%;
-    height: 180%;
-    transform: scale(0.5556);
-    transform-origin: top left;
-  }
-
-  .video-container.youtube-embed-player {
-    aspect-ratio: 16 / 9;
-  }
-
   .mobile-player-nav {
     position: sticky;
     bottom: 0.75rem;

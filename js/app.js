@@ -259,12 +259,9 @@ function renderMatchPage() {
   // Update video player
   const sourceDetails = getVideoSourceDetails(match);
   const videoPlayer = document.getElementById('videoPlayer');
-  const videoContainerEl = document.querySelector('.video-container');
   videoPlayer.classList.remove('hidden');
   videoPlayer.src = sourceDetails.embedUrl;
   videoPlayer.title = match.title;
-  videoContainerEl.classList.toggle('drive-embed-player', sourceDetails.isDrive);
-  videoContainerEl.classList.toggle('youtube-embed-player', sourceDetails.isYouTube);
 
   // Update match info
   document.getElementById('matchType').textContent = match.matchType;
