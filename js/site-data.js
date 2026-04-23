@@ -84,5 +84,39 @@ window.siteData = {
       redTeams: ["2732Z", "77787W"],
       blueTeams: ["36620B", "5956W"]
     }
+  ],
+  daysInfo: [
+    {
+      day: 1,
+      date: "April 23, 2025",
+      title: "Day 1",
+      description: "Practice Matches & Opening Qualifications",
+      icon: "users",
+      matchCount: 2
+    },
+    {
+      day: 2,
+      date: "April 24, 2025",
+      title: "Day 2",
+      description: "Qualification Rounds Continue",
+      icon: "play",
+      matchCount: 5
+    },
+    {
+      day: 3,
+      date: "April 25, 2025",
+      title: "Day 3",
+      description: "Elimination Rounds & Quarterfinals",
+      icon: "calendar",
+      matchCount: 0
+    },
+    {
+      day: 4,
+      date: "April 26, 2025",
+      title: "Day 4",
+      description: "Semifinals & Championship Finals",
+      icon: "trophy",
+      matchCount: 0
+    }
   ]
 };
