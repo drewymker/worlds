@@ -262,6 +262,8 @@ function renderMatchPage() {
   videoPlayer.classList.remove('hidden');
   videoPlayer.src = sourceDetails.embedUrl;
   videoPlayer.title = match.title;
+  videoContainer.classList.toggle('drive-embed-player', sourceDetails.isDrive);
+  videoContainer.classList.toggle('youtube-embed-player', sourceDetails.isYouTube);
 
   // Update match info
   document.getElementById('matchType').textContent = match.matchType;
