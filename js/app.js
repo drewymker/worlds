@@ -96,17 +96,101 @@ function getVideoSourceDetails(match) {
   const isYouTube = url.includes('youtube.com') || url.includes('youtu.be');
   const isDrive = url.includes('drive.google.com') || driveUrl.includes('drive.google.com');
   const driveFileId = getDriveFileId(url) || getDriveFileId(driveUrl);
+  const nativeVideoCandidates = driveFileId ? [
+    `https://drive.google.com/uc?export=download&id=${driveFileId}`,
+    `https://drive.google.com/uc?export=view&id=${driveFileId}`,
+    `https://drive.usercontent.google.com/download?id=${driveFileId}&export=view&authuser=0`
+  ] : [];
 
   return {
     isYouTube,
     isDrive,
     driveFileId,
     embedUrl: getEmbedUrl(url),
-    nativeVideoUrl: driveFileId ? `https://drive.google.com/uc?export=download&id=${driveFileId}` : "",
+    nativeVideoCandidates,
     openPlayerUrl: driveUrl || url,
     externalUrl: driveUrl || url,
     useNativePlayer: Boolean(driveFileId)
   };
+}
+
+function clearNativeVideoState(video) {
+  if (!video) return;
+  video.pause();
+  video.removeAttribute('src');
+  video.load();
+  video.classList.add('hidden');
+  video.onerror = null;
+  video.onloadedmetadata = null;
+}
+
+function showPlayerFallback(url) {
+  const fallback = document.getElementById('playerFallback');
+  const fallbackLink = document.getElementById('playerFallbackLink');
+  if (!fallback || !fallbackLink) return;
+  fallbackLink.href = url;
+  fallback.classList.remove('hidden');
+}
+
+function hidePlayerFallback() {
+  const fallback = document.getElementById('playerFallback');
+  if (fallback) {
+    fallback.classList.add('hidden');
+  }
+}
+
+function useIframePlayer(videoPlayer, sourceDetails, matchTitle) {
+  const nativeVideoPlayer = document.getElementById('nativeVideoPlayer');
+  clearNativeVideoState(nativeVideoPlayer);
+  hidePlayerFallback();
+  videoPlayer.classList.remove('hidden');
+  videoPlayer.src = sourceDetails.embedUrl;
+  videoPlayer.title = matchTitle;
+}
+
+function attachNativeDrivePlayer(nativeVideoPlayer, videoPlayer, sourceDetails, match) {
+  const candidates = [...sourceDetails.nativeVideoCandidates];
+  let settled = false;
+  let timeoutId = null;
+
+  const tryNextSource = () => {
+    if (!candidates.length) {
+      useIframePlayer(videoPlayer, sourceDetails, match.title);
+      if (sourceDetails.isDrive) {
+        showPlayerFallback(sourceDetails.externalUrl);
+      }
+      return;
+    }
+
+    const nextSource = candidates.shift();
+    nativeVideoPlayer.src = nextSource;
+    nativeVideoPlayer.load();
+
+    timeoutId = window.setTimeout(() => {
+      if (!settled && nativeVideoPlayer.readyState < 2) {
+        tryNextSource();
+      }
+    }, 4000);
+  };
+
+  nativeVideoPlayer.onloadedmetadata = () => {
+    settled = true;
+    if (timeoutId) window.clearTimeout(timeoutId);
+    hidePlayerFallback();
+  };
+
+  nativeVideoPlayer.onerror = () => {
+    if (timeoutId) window.clearTimeout(timeoutId);
+    tryNextSource();
+  };
+
+  nativeVideoPlayer.classList.remove('hidden');
+  nativeVideoPlayer.poster = match.thumbnail || "";
+  nativeVideoPlayer.setAttribute('title', match.title);
+  videoPlayer.classList.add('hidden');
+  videoPlayer.src = "";
+  hidePlayerFallback();
+  tryNextSource();
 }
 
 function getSortedMatches(matches = matchesData.videos) {
@@ -270,23 +354,9 @@ function renderMatchPage() {
   const nativeVideoPlayer = document.getElementById('nativeVideoPlayer');
 
   if (sourceDetails.useNativePlayer) {
-    nativeVideoPlayer.classList.remove('hidden');
-    nativeVideoPlayer.src = sourceDetails.nativeVideoUrl;
-    nativeVideoPlayer.poster = match.thumbnail || "";
-    nativeVideoPlayer.setAttribute('title', match.title);
-    nativeVideoPlayer.load();
-
-    videoPlayer.classList.add('hidden');
-    videoPlayer.src = "";
+    attachNativeDrivePlayer(nativeVideoPlayer, videoPlayer, sourceDetails, match);
   } else {
-    videoPlayer.classList.remove('hidden');
-    videoPlayer.src = sourceDetails.embedUrl;
-    videoPlayer.title = match.title;
-
-    nativeVideoPlayer.pause();
-    nativeVideoPlayer.removeAttribute('src');
-    nativeVideoPlayer.load();
-    nativeVideoPlayer.classList.add('hidden');
+    useIframePlayer(videoPlayer, sourceDetails, match.title);
   }
 
   // Update match info
