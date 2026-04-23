@@ -88,7 +88,7 @@ window.siteData = {
   daysInfo: [
     {
       day: 1,
-      date: "April 23, 2025",
+      date: "April 21, 2026",
       title: "Day 1",
       description: "Practice Matches & Opening Qualifications",
       icon: "users",
@@ -96,7 +96,7 @@ window.siteData = {
     },
     {
       day: 2,
-      date: "April 24, 2025",
+      date: "April 22, 2026",
       title: "Day 2",
       description: "Qualification Rounds Continue",
       icon: "play",
@@ -104,17 +104,17 @@ window.siteData = {
     },
     {
       day: 3,
-      date: "April 25, 2025",
+      date: "April 23, 2026",
       title: "Day 3",
-      description: "Elimination Rounds & Quarterfinals",
+      description: "Qualification Rounds Continue",
       icon: "calendar",
       matchCount: 2
     },
     {
       day: 4,
-      date: "April 26, 2025",
+      date: "April 24, 2026",
       title: "Day 4",
-      description: "Semifinals & Championship Finals",
+      description: "Final Qualifications and Elimination Rounds",
       icon: "trophy",
       matchCount: 2
     }
