@@ -1,16 +1,16 @@
 {
   "videos": [
     {
-      "id": "Q1",
-      "title": "Practice Match #1",
-      "thumbnail": "https://drive.google.com/thumbnail?id=14vCdMeNunMsBgvxUbDig2w5Wq2qCAu3e&sz=w400-h300",
-      "videoUrl": "https://drive.google.com/file/d/14vCdMeNunMsBgvxUbDig2w5Wq2qCAu3e/view?usp=sharing",
+      "id": "q1-001",
+      "title": "Qualification Match Q1-001",
+      "thumbnail": "/match-placeholder.png",
+      "videoUrl": "https://www.youtube.com/embed/dQw4w9WgXcQ",
       "dateAdded": "2025-04-23T09:00:00Z",
       "folder": "Day 1",
       "day": 1,
-      "matchType": "Practice",
-      "redTeams": ["36620B", "1698V"],
-      "blueTeams": ["1764V", "7405V"]
+      "matchType": "Qualification",
+      "redTeams": ["1234A", "5678B"],
+      "blueTeams": ["36620B", "3456D"]
     },
     {
       "id": "q1-002",

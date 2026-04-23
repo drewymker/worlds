@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>36620B Blue Crew | VEX Worlds 2025</title>
+  <meta name="description" content="Watch all the matches from Team 36620B Blue Crew at VEX Worlds 2025 - Push Back">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <main class="home-page">
+    <!-- Hero Section -->
+    <section class="hero">
+      <!-- Background Effects -->
+      <div class="hero-bg">
+        <div class="glow-orb glow-orb-1"></div>
+        <div class="glow-orb glow-orb-2"></div>
+      </div>
+
+      <div class="container hero-content">
+        <!-- Logo -->
+        <div class="logo-container fade-in">
+          <div class="logo pulse-glow">
+            <svg class="trophy-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"></path>
+              <path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"></path>
+              <path d="M4 22h16"></path>
+              <path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"></path>
+              <path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"></path>
+              <path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"></path>
+            </svg>
+          </div>
+        </div>
+
+        <!-- Team Branding -->
+        <div class="team-badge fade-in fade-delay-1">
+          <span class="badge">TEAM 36620B</span>
+        </div>
+
+        <h1 class="team-name fade-in fade-delay-2">Blue Crew</h1>
+
+        <p class="event-name shimmer fade-in fade-delay-3">VEX WORLDS 2025 - PUSH BACK</p>
+
+        <p class="hero-description fade-in fade-delay-4">
+          Watch all the action from our VEX Worlds competition journey. Select a day to view matches.
+        </p>
+      </div>
+    </section>
+
+    <!-- Day Selection Grid -->
+    <section class="days-section">
+      <div class="container">
+        <div class="days-grid" id="daysGrid">
+          <!-- Day cards will be populated by JavaScript -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <p>Team 36620B Blue Crew - VEX Worlds 2025</p>
+        <p style="margin-top: 0.5rem;"><a href="admin.html" style="color: var(--primary); text-decoration: none; font-size: 0.75rem;">Add New Match</a></p>
+      </div>
+    </footer>
+  </main>
+
+  <script src="js/app.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      renderDaysGrid();
+    });
+  </script>
+</body>
+</html>

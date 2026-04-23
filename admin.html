@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Add Match - 36620B Blue Crew</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .admin-container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 2rem 1rem;
+    }
+
+    .admin-header {
+      margin-bottom: 2rem;
+    }
+
+    .admin-header h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+
+    .admin-header p {
+      color: var(--muted);
+    }
+
+    .form-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+    }
+
+    .form-section {
+      margin-bottom: 2rem;
+    }
+
+    .form-section:last-child {
+      margin-bottom: 0;
+    }
+
+    .form-section h3 {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--primary);
+      margin-bottom: 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .form-group {
+      margin-bottom: 1.25rem;
+    }
+
+    .form-group:last-child {
+      margin-bottom: 0;
+    }
+
+    .form-label {
+      display: block;
+      font-size: 0.875rem;
+      font-weight: 500;
+      margin-bottom: 0.5rem;
+      color: var(--foreground);
+    }
+
+    .form-hint {
+      font-size: 0.75rem;
+      color: var(--muted);
+      margin-top: 0.25rem;
+    }
+
+    .form-input, .form-select {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      background: var(--secondary);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      color: var(--foreground);
+      font-size: 0.875rem;
+      font-family: inherit;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .form-input:focus, .form-select:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px var(--primary-light);
+    }
+
+    .form-input::placeholder {
+      color: var(--muted);
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    .form-row-3 {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 1rem;
+    }
+
+    .time-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr auto;
+      gap: 0.75rem;
+      align-items: end;
+    }
+
+    .ampm-toggle {
+      display: flex;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      overflow: hidden;
+    }
+
+    .ampm-btn {
+      padding: 0.75rem 1rem;
+      background: var(--secondary);
+      border: none;
+      color: var(--muted);
+      font-size: 0.875rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .ampm-btn.active {
+      background: var(--primary);
+      color: white;
+    }
+
+    .ampm-btn:hover:not(.active) {
+      background: var(--card-hover);
+    }
+
+    .teams-input-group {
+      display: flex;
+      gap: 0.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .teams-input-group .form-input {
+      flex: 1;
+    }
+
+    .add-team-btn {
+      padding: 0.75rem;
+      background: var(--secondary);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      color: var(--primary);
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .add-team-btn:hover {
+      background: var(--primary-light);
+      border-color: var(--primary);
+    }
+
+    .team-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 0.5rem;
+    }
+
+    .team-tag-input {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.375rem 0.75rem;
+      border-radius: var(--radius-sm);
+      font-size: 0.875rem;
+      font-weight: 500;
+    }
+
+    .team-tag-input.red {
+      background: var(--red-alliance-bg);
+      color: #f87171;
+    }
+
+    .team-tag-input.blue {
+      background: var(--blue-alliance-bg);
+      color: #60a5fa;
+    }
+
+    .team-tag-input button {
+      background: none;
+      border: none;
+      color: inherit;
+      cursor: pointer;
+      padding: 0;
+      opacity: 0.7;
+      transition: opacity 0.2s;
+    }
+
+    .team-tag-input button:hover {
+      opacity: 1;
+    }
+
+    .drive-helper {
+      background: var(--secondary);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .drive-helper h4 {
+      font-size: 0.875rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      color: var(--primary);
+    }
+
+    .drive-helper p {
+      font-size: 0.75rem;
+      color: var(--muted);
+      margin-bottom: 0.75rem;
+    }
+
+    .drive-helper .form-input {
+      margin-bottom: 0.75rem;
+    }
+
+    .auto-fill-btn {
+      padding: 0.5rem 1rem;
+      background: var(--primary);
+      border: none;
+      border-radius: var(--radius-sm);
+      color: white;
+      font-size: 0.75rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .auto-fill-btn:hover {
+      opacity: 0.9;
+    }
+
+    .submit-btn {
+      width: 100%;
+      padding: 1rem;
+      background: var(--primary);
+      border: none;
+      border-radius: var(--radius-sm);
+      color: white;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      margin-top: 1.5rem;
+    }
+
+    .submit-btn:hover {
+      opacity: 0.9;
+      box-shadow: 0 0 20px var(--primary-light);
+    }
+
+    .output-section {
+      margin-top: 2rem;
+    }
+
+    .output-section h3 {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+
+    .output-code {
+      background: var(--secondary);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 1rem;
+      font-family: 'Consolas', 'Monaco', monospace;
+      font-size: 0.75rem;
+      overflow-x: auto;
+      white-space: pre-wrap;
+      word-break: break-all;
+    }
+
+    .copy-btn {
+      margin-top: 1rem;
+      padding: 0.75rem 1.5rem;
+      background: var(--secondary);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      color: var(--foreground);
+      font-size: 0.875rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .copy-btn:hover {
+      border-color: var(--primary);
+      color: var(--primary);
+    }
+
+    .copy-btn.copied {
+      background: var(--primary);
+      border-color: var(--primary);
+      color: white;
+    }
+
+    .preview-thumbnail {
+      margin-top: 1rem;
+      border-radius: var(--radius-sm);
+      overflow: hidden;
+      border: 1px solid var(--border);
+    }
+
+    .preview-thumbnail img {
+      width: 100%;
+      max-width: 400px;
+      height: auto;
+      display: block;
+    }
+
+    @media (max-width: 640px) {
+      .form-row, .form-row-3, .time-row {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="container header-content">
+      <div class="header-left">
+        <a href="index.html" class="back-link">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M19 12H5M12 19l-7-7 7-7"/>
+          </svg>
+          <span class="back-text">Back to Home</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main class="admin-container">
+    <div class="admin-header fade-in">
+      <h1>Add New Match</h1>
+      <p>Fill in the match details below. The generated code can be copied into your app.js file.</p>
+    </div>
+
+    <div class="form-card fade-in fade-delay-1">
+      <!-- Google Drive Helper -->
+      <div class="form-section">
+        <h3>Google Drive Video (Quick Fill)</h3>
+        <div class="drive-helper">
+          <h4>Paste your Google Drive share link</h4>
+          <p>Just paste the share link and we will auto-generate the thumbnail, embed, and view URLs.</p>
+          <input type="text" class="form-input" id="driveShareLink" placeholder="https://drive.google.com/file/d/YOUR_FILE_ID/view?usp=sharing">
+          <button type="button" class="auto-fill-btn" onclick="autoFillDriveUrls()">Auto-Fill URLs</button>
+          <div id="thumbnailPreview" class="preview-thumbnail hidden"></div>
+        </div>
+      </div>
+
+      <form id="matchForm">
+        <!-- Basic Info -->
+        <div class="form-section">
+          <h3>Match Information</h3>
+          
+          <div class="form-group">
+            <label class="form-label">Match ID</label>
+            <input type="text" class="form-input" id="matchId" placeholder="e.g., q1-001, sf-002, finals-001" required>
+            <p class="form-hint">Unique identifier for this match (lowercase, use dashes)</p>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Match Title</label>
+            <input type="text" class="form-input" id="matchTitle" placeholder="e.g., Qualification Match Q1-001" required>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Day</label>
+              <select class="form-select" id="matchDay" required>
+                <option value="1">Day 1 - April 23</option>
+                <option value="2">Day 2 - April 24</option>
+                <option value="3">Day 3 - April 25</option>
+                <option value="4">Day 4 - April 26</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Match Type</label>
+              <select class="form-select" id="matchType" required>
+                <option value="Practice">Practice</option>
+                <option value="Qualification">Qualification</option>
+                <option value="Elimination">Elimination</option>
+                <option value="Quarterfinal">Quarterfinal</option>
+                <option value="Semifinal">Semifinal</option>
+                <option value="Finals">Finals</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Match Time</label>
+            <div class="time-row">
+              <div>
+                <input type="number" class="form-input" id="matchHour" placeholder="Hour" min="1" max="12" value="9">
+              </div>
+              <div>
+                <input type="number" class="form-input" id="matchMinute" placeholder="Minute" min="0" max="59" value="00">
+              </div>
+              <div class="ampm-toggle">
+                <button type="button" class="ampm-btn active" data-value="AM" onclick="setAmPm(this)">AM</button>
+                <button type="button" class="ampm-btn" data-value="PM" onclick="setAmPm(this)">PM</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Video URLs -->
+        <div class="form-section">
+          <h3>Video URLs</h3>
+          
+          <div class="form-group">
+            <label class="form-label">Thumbnail URL</label>
+            <input type="text" class="form-input" id="thumbnailUrl" placeholder="https://drive.google.com/thumbnail?id=FILE_ID&sz=w400-h300">
+            <p class="form-hint">For Google Drive: https://drive.google.com/thumbnail?id=FILE_ID&sz=w400-h300</p>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Video Embed URL (for player)</label>
+            <input type="text" class="form-input" id="videoUrl" placeholder="https://drive.google.com/file/d/FILE_ID/preview">
+            <p class="form-hint">For Google Drive: https://drive.google.com/file/d/FILE_ID/preview</p>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">External View URL (optional)</label>
+            <input type="text" class="form-input" id="driveUrl" placeholder="https://drive.google.com/file/d/FILE_ID/view?usp=sharing">
+            <p class="form-hint">Link to view the video externally</p>
+          </div>
+        </div>
+
+        <!-- Teams -->
+        <div class="form-section">
+          <h3>Teams</h3>
+          
+          <div class="form-group">
+            <label class="form-label">Red Alliance Teams</label>
+            <div class="teams-input-group">
+              <input type="text" class="form-input" id="redTeamInput" placeholder="e.g., 1234A">
+              <button type="button" class="add-team-btn" onclick="addTeam('red')">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M12 5v14M5 12h14"/>
+                </svg>
+              </button>
+            </div>
+            <div class="team-tags" id="redTeamTags"></div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Blue Alliance Teams</label>
+            <div class="teams-input-group">
+              <input type="text" class="form-input" id="blueTeamInput" placeholder="e.g., 36620B">
+              <button type="button" class="add-team-btn" onclick="addTeam('blue')">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M12 5v14M5 12h14"/>
+                </svg>
+              </button>
+            </div>
+            <div class="team-tags" id="blueTeamTags"></div>
+          </div>
+        </div>
+
+        <button type="submit" class="submit-btn">Generate Match Code</button>
+      </form>
+
+      <!-- Output Section -->
+      <div class="output-section hidden" id="outputSection">
+        <h3>Copy this into your matchesData.videos array in app.js:</h3>
+        <pre class="output-code" id="outputCode"></pre>
+        <button type="button" class="copy-btn" onclick="copyCode()">Copy to Clipboard</button>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    const redTeams = [];
+    const blueTeams = [];
+
+    function extractDriveFileId(url) {
+      const match = url.match(/[-\w]{25,}/);
+      return match ? match[0] : null;
+    }
+
+    function autoFillDriveUrls() {
+      const shareLink = document.getElementById('driveShareLink').value.trim();
+      const fileId = extractDriveFileId(shareLink);
+      
+      if (!fileId) {
+        alert('Could not extract file ID from the link. Please check the URL.');
+        return;
+      }
+
+      const thumbnailUrl = `https://drive.google.com/thumbnail?id=${fileId}&sz=w400-h300`;
+      const videoUrl = `https://drive.google.com/file/d/${fileId}/preview`;
+      const driveUrl = `https://drive.google.com/file/d/${fileId}/view?usp=sharing`;
+
+      document.getElementById('thumbnailUrl').value = thumbnailUrl;
+      document.getElementById('videoUrl').value = videoUrl;
+      document.getElementById('driveUrl').value = driveUrl;
+
+      // Show thumbnail preview
+      const preview = document.getElementById('thumbnailPreview');
+      preview.innerHTML = `<img src="${thumbnailUrl}" alt="Thumbnail Preview">`;
+      preview.classList.remove('hidden');
+    }
+
+    function setAmPm(btn) {
+      document.querySelectorAll('.ampm-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+    }
+
+    function addTeam(alliance) {
+      const input = document.getElementById(`${alliance}TeamInput`);
+      const team = input.value.trim().toUpperCase();
+      
+      if (!team) return;
+      
+      const teams = alliance === 'red' ? redTeams : blueTeams;
+      if (teams.includes(team)) {
+        input.value = '';
+        return;
+      }
+      
+      teams.push(team);
+      renderTeamTags(alliance);
+      input.value = '';
+    }
+
+    function removeTeam(alliance, team) {
+      const teams = alliance === 'red' ? redTeams : blueTeams;
+      const index = teams.indexOf(team);
+      if (index > -1) {
+        teams.splice(index, 1);
+        renderTeamTags(alliance);
+      }
+    }
+
+    function renderTeamTags(alliance) {
+      const teams = alliance === 'red' ? redTeams : blueTeams;
+      const container = document.getElementById(`${alliance}TeamTags`);
+      container.innerHTML = teams.map(team => `
+        <span class="team-tag-input ${alliance}">
+          ${team}
+          <button type="button" onclick="removeTeam('${alliance}', '${team}')">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M18 6L6 18M6 6l12 12"/>
+            </svg>
+          </button>
+        </span>
+      `).join('');
+    }
+
+    // Allow Enter key to add teams
+    document.getElementById('redTeamInput').addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        addTeam('red');
+      }
+    });
+
+    document.getElementById('blueTeamInput').addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        addTeam('blue');
+      }
+    });
+
+    document.getElementById('matchForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+      
+      const day = parseInt(document.getElementById('matchDay').value);
+      const hour = parseInt(document.getElementById('matchHour').value) || 9;
+      const minute = parseInt(document.getElementById('matchMinute').value) || 0;
+      const ampm = document.querySelector('.ampm-btn.active').dataset.value;
+      
+      // Convert to 24-hour format
+      let hour24 = hour;
+      if (ampm === 'PM' && hour !== 12) hour24 += 12;
+      if (ampm === 'AM' && hour === 12) hour24 = 0;
+      
+      // Build date string
+      const dayDates = { 1: '23', 2: '24', 3: '25', 4: '26' };
+      const dateStr = `2025-04-${dayDates[day]}T${hour24.toString().padStart(2, '0')}:${minute.toString().padStart(2, '0')}:00Z`;
+      
+      const matchData = {
+        id: document.getElementById('matchId').value.trim(),
+        title: document.getElementById('matchTitle').value.trim(),
+        thumbnail: document.getElementById('thumbnailUrl').value.trim() || 'images/match-placeholder.png',
+        videoUrl: document.getElementById('videoUrl').value.trim(),
+        driveUrl: document.getElementById('driveUrl').value.trim() || null,
+        dateAdded: dateStr,
+        day: day,
+        matchType: document.getElementById('matchType').value,
+        redTeams: [...redTeams],
+        blueTeams: [...blueTeams]
+      };
+
+      // Format output
+      let output = `{
+  id: "${matchData.id}",
+  title: "${matchData.title}",
+  thumbnail: "${matchData.thumbnail}",
+  videoUrl: "${matchData.videoUrl}",`;
+      
+      if (matchData.driveUrl) {
+        output += `
+  driveUrl: "${matchData.driveUrl}",`;
+      }
+
+      output += `
+  dateAdded: "${matchData.dateAdded}",
+  day: ${matchData.day},
+  matchType: "${matchData.matchType}",
+  redTeams: [${matchData.redTeams.map(t => `"${t}"`).join(', ')}],
+  blueTeams: [${matchData.blueTeams.map(t => `"${t}"`).join(', ')}]
+}`;
+
+      document.getElementById('outputCode').textContent = output;
+      document.getElementById('outputSection').classList.remove('hidden');
+    });
+
+    function copyCode() {
+      const code = document.getElementById('outputCode').textContent;
+      navigator.clipboard.writeText(code).then(() => {
+        const btn = document.querySelector('.copy-btn');
+        btn.textContent = 'Copied!';
+        btn.classList.add('copied');
+        setTimeout(() => {
+          btn.textContent = 'Copy to Clipboard';
+          btn.classList.remove('copied');
+        }, 2000);
+      });
+    }
+  </script>
+</body>
+</html>
