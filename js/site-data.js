@@ -131,6 +131,30 @@ window.siteData = {
       matchType: "Qualification",
       redTeams: ["334W", "55885X"],
       blueTeams: ["81785G", "36620B"]
+    },
+    {
+      id: "Q231",
+      title: "Qualification Match #231",
+      thumbnail: "https://drive.google.com/thumbnail?id=137Z-UYwT8ggrAGVqhQVvhP9XblxVWJDU&sz=w400-h300",
+      videoUrl: "https://drive.google.com/file/d/137Z-UYwT8ggrAGVqhQVvhP9XblxVWJDU/preview",
+      driveUrl: "https://drive.google.com/file/d/137Z-UYwT8ggrAGVqhQVvhP9XblxVWJDU/view?usp=sharing",
+      dateAdded: "2025-04-26T08:30:00Z",
+      day: 4,
+      matchType: "Qualification",
+      redTeams: ["4405W", "26038A"],
+      blueTeams: ["36620B", "3457X"]
+    },
+    {
+      id: "Q258",
+      title: "Qualification Match #258",
+      thumbnail: "https://drive.google.com/thumbnail?id=1WGEH5zL_51xEUAnpjrFi0oIurDkIXGSm&sz=w400-h300",
+      videoUrl: "https://drive.google.com/file/d/1WGEH5zL_51xEUAnpjrFi0oIurDkIXGSm/preview",
+      driveUrl: "https://drive.google.com/file/d/1WGEH5zL_51xEUAnpjrFi0oIurDkIXGSm/view?usp=sharing",
+      dateAdded: "2025-04-26T10:15:00Z",
+      day: 4,
+      matchType: "Qualification",
+      redTeams: ["36620B", "6978R"],
+      blueTeams: ["8336B", "285C"]
     }
   ],
   daysInfo: [
